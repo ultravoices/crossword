@@ -6,22 +6,23 @@ for line in words_file:
     word = line.strip()
     words_list.append(word)
 
-def select_by_length(length, words_list):
+
+def select_by_length(length, wordlist):
     selected_by_length_words = []
-    for word in words_list:
+    for word in wordlist:
         if length == len(word):
             selected_by_length_words.append(word)
     return selected_by_length_words
 
-def select_by_letter(letter, index, words_list):
+
+def select_by_letter(letter, index, wordlist):
     selected_by_letter_words = []
-    for word in words_list:
-        try:
-            if letter in word[index]:
-                selected_by_letter_words.append(word)
-        except IndexError:
-            pass
+    for item in wordlist:
+        if letter in item[index]:
+            selected_by_letter_words.append(item)
     return selected_by_letter_words
+
+
 
 def get_length():
     while True:
@@ -34,8 +35,9 @@ def get_length():
                 print("Please input a number between 2 and 20.")
         except ValueError:
             print("Sorry, please input a number between 2 and 20.")
-        
-def get_lengths():
+
+
+def get_letters():
     pairs = []
     while True:
         try:
@@ -43,28 +45,37 @@ def get_lengths():
             if input_letter == 'done':
                 print('Searching for answers...')
                 return pairs
-            if (isinstance(input_letter, string.ascii_lowercase)) and len(input_letter) == 1:
+            if (isinstance(input_letter, str)) and len(input_letter) == 1:
                 input_position = int(input("Enter the position of the letter:"))
                 input_position -= 1
                 if input_position >= 0 and input_position <= 19:
                     result = (input_letter, input_position)
                     pairs.append(result)
                 else:
-                        print('something has gone wrong!')
-                        pairs = []
+                    print('something has gone wrong!')
+                    pairs = []
             else:
                 print('Please enter a single letter.')
         except ValueError:
             print('Please enter a number between 1 and 20')
 
+def main():
+    length_var = get_length()
+    length_list = select_by_length(length_var, words_list)
+    search_pairs = get_letters()
+    search_by_letter_list_1 = []
+    search_by_letter_list_2 = []
+    for i, j in search_pairs:
+        search_by_letter_list_1 = select_by_letter(i, j, length_list)
+        search_by_letter_list_2.append(search_by_letter_list_1)
+    print(search_by_letter_list_2)
 
 
-##a_set = select_by_length(5, words_list)
-##b_set = select_by_letter('x', 2, words_list)
-##
-##results = set.intersection(set(a_set), set(b_set))
-##listed_results = sorted(list(results))
-##
-##print(listed_results)
 
-
+            ##a_set = select_by_length(5, words_list)
+            ##b_set = select_by_letter('x', 2, words_list)
+            ##
+            ##results = set.intersection(set(a_set), set(b_set))
+            ##listed_results = sorted(list(results))
+            ##
+            ##print(listed_results)
