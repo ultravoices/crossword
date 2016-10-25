@@ -1,4 +1,3 @@
-
 words_file = open('words.txt')
 
 words_list = []
@@ -10,9 +9,9 @@ for line in words_file:
 
 def select_by_length(length, wordlist):
     selected_by_length_words = []
-    for word in wordlist:
-        if length == len(word):
-            selected_by_length_words.append(word)
+    for wordz in wordlist:
+        if length == len(wordz):
+            selected_by_length_words.append(wordz)
     return selected_by_length_words
 
 
@@ -22,7 +21,6 @@ def select_by_letter(letter, index, wordlist):
         if letter in item[index]:
             selected_by_letter_words.append(item)
     return selected_by_letter_words
-
 
 
 def get_length():
@@ -49,7 +47,7 @@ def get_letters():
             if (isinstance(input_letter, str)) and len(input_letter) == 1:
                 input_position = int(input("Enter the position of the letter:"))
                 input_position -= 1
-                if input_position >= 0 and input_position <= 19:
+                if 0 <= input_position <= 19:
                     result = (input_letter, input_position)
                     pairs.append(result)
                 else:
