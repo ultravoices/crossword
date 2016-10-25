@@ -1,3 +1,4 @@
+
 words_file = open('words.txt')
 
 words_list = []
@@ -54,28 +55,26 @@ def get_letters():
                 else:
                     print('something has gone wrong!')
                     pairs = []
-            else:
-                print('Please enter a single letter.')
         except ValueError:
             print('Please enter a number between 1 and 20')
+
 
 def main():
     length_var = get_length()
     length_list = select_by_length(length_var, words_list)
     search_pairs = get_letters()
-    search_by_letter_list_1 = []
-    search_by_letter_list_2 = []
+    counter = 0
     for i, j in search_pairs:
-        search_by_letter_list_1 = select_by_letter(i, j, length_list)
-        search_by_letter_list_2.append(search_by_letter_list_1)
-    print(search_by_letter_list_2)
+        if counter is 0:
+            search_by_letter_list_1 = select_by_letter(i, j, length_list)
+            set_a = set(search_by_letter_list_1)
+            counter += 1
+        if counter is not 0:
+            search_by_letter_list_2 = select_by_letter(i, j, length_list)
+            set_b = set(search_by_letter_list_2)
+            set_a = set.intersection(set_a, set_b)
+    results = sorted(list(set_a))
+    print(results)
 
+main()
 
-
-            ##a_set = select_by_length(5, words_list)
-            ##b_set = select_by_letter('x', 2, words_list)
-            ##
-            ##results = set.intersection(set(a_set), set(b_set))
-            ##listed_results = sorted(list(results))
-            ##
-            ##print(listed_results)
