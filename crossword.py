@@ -29,7 +29,7 @@ def get_length():
     while True:
         try:
             input_length = int(input("Enter the length of the word:"))
-            if input_length <= 20 and input_length >= 2:
+            if 20 >= input_length >= 2:
                 print("Getting words of length", input_length)
                 return input_length
             else:
